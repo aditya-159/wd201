@@ -29,7 +29,11 @@ const todoList = () => {
   }
 
   const toDisplayableList = (list) => {
-    return list.map((item, index) => `${index + 1}. ${item.title} - ${item.dueDate}`).join('\n')
+    return list.map(item => {
+      const checkbox = item.completed ? "[x]" : "[ ]"
+      const formattedDate = item.dueDate ? ` ${formattedDate(new Date(item.dueDate))}` : ''
+      return `${checkbox} ${item.title}${formattedDate}`
+    }).join('\n')
     // Format the To-Do list here, and return the output string
     // as per the format given above.
   }
