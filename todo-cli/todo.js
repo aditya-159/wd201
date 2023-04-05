@@ -8,22 +8,52 @@ const todoList = () => {
   }
 
   const overdue = () => {
-    return all.filter(item => !item.completed && item.dueDate < today)
+    return all.filter((item)=>{
+      return item.dueDate<today
+    }
+    // Write the date check condition here and return the array
+    // of overdue items accordingly.
+    )
   }
 
   const dueToday = () => {
-    return all.filter(item => !item.completed && item.dueDate === today)
+    return all.filter((item)=>{
+      return item.dueDate===today
+    }
+    // Write the date check condition here and return the array
+    // of todo items that are due today accordingly.
+    )
   }
 
   const dueLater = () => {
-    return all.filter(item => !item.completed && item.dueDate > today)
+    return all.filter((item)=>{
+      return item.dueDate>today
+    }
+    // Write the date check condition here and return the array
+    // of todo items that are due later accordingly.
+    )
   }
 
   const toDisplayableList = (list) => {
-    return list.map((item, index) => {
-      const checkbox = item.completed ? "[x]" : "[ ]"
-      return `${checkbox} ${item.title} ${item.dueDate ? item.dueDate : ""}`
-    }).join("\n")
+    let returnlist = [];
+        list.forEach((item) => {
+            if (item.dueDate === today) {
+                if (item.completed === true) {
+                    returnlist.push(`[x] ${item.title}`)
+                } else {
+                    returnlist.push(`[ ] ${item.title}`)
+                }
+            } else {
+                if (item.completed === true) {
+                    returnlist.push(`[x] ${item.title} ${item.dueDate}`)
+                }else{
+                    returnlist.push(`[ ] ${item.title} ${item.dueDate}`)
+                }
+            }
+        })
+        return returnlist.join("\n")
+    // Format the To-Do list here, and return the output string
+    // as per the format given above.
   }
 
   return {
@@ -72,7 +102,6 @@ console.log("\n")
 
 console.log("Due Today")
 let itemsDueToday = todos.dueToday()
-todos.markAsComplete(1) // Mark "Pay rent" as complete
 let formattedItemsDueToday = todos.toDisplayableList(itemsDueToday)
 console.log(formattedItemsDueToday)
 console.log("\n")
