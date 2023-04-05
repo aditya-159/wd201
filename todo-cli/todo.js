@@ -72,6 +72,7 @@ console.log("\n")
 
 console.log("Due Today")
 let itemsDueToday = todos.dueToday()
+todos.markAsComplete(1) // Mark "Pay rent" as complete
 let formattedItemsDueToday = todos.toDisplayableList(itemsDueToday)
 console.log(formattedItemsDueToday)
 console.log("\n")
