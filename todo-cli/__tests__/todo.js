@@ -5,7 +5,7 @@ describe("Todo List Test suite", () => {
   // Before starting all tests
   beforeAll(() => {
     add({
-      title: "complete DAA assignment",
+      title: "First Checking",
       dueDate: new Date().toISOString().slice(0,10),
       completed: false,
     });
@@ -15,7 +15,7 @@ describe("Todo List Test suite", () => {
   test("Adding a new item", () => {
     const todoLength = all.length;
     add({
-      title: "test item",
+      title: "tests item",
       dueDate: new Date().toISOString().slice(0,10),
       completed: false,
     });
@@ -23,7 +23,7 @@ describe("Todo List Test suite", () => {
   });
 
   // checking if the markAsComplete function is working
-  test("Marking as complete", () => {
+  test("markasComplete", () => {
     markAsComplete(0);
     expect(all[0].completed).toBe(true);
   });
@@ -31,7 +31,7 @@ describe("Todo List Test suite", () => {
   // checking if the overdue function is working
   test("Overdue", () => {
     add({
-      title: "test overdue",
+      title: "all the test overdued",
       dueDate: new Date(
         new Date().setDate(new Date().getDate() - 2)
       ).toISOString().slice(0,10),
@@ -41,14 +41,14 @@ describe("Todo List Test suite", () => {
   });
 
   // checking if the dueToday function is working
-  test("Due today", () => {
+  test("Today is the day", () => {
     expect(dueToday().length).toBe(2);
   });
 
   // checking if the dueLater function is working
   test("later items", () => {
     add({
-      title: "test due later",
+      title: "Later work",
       dueDate: new Date(
         new Date().setDate(new Date().getDate() + 2)
       ).toISOString().slice(0,10),
