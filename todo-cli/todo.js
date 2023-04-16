@@ -37,19 +37,22 @@ const todoList = () => {
   const toDisplayableList = (list) => {
     let returnlist = [];
         list.forEach((item) => {
-            if (item.dueDate === today) {
-                if (item.completed === true) {
-                    returnlist.push(`[x] ${item.title}`)
-                } else {
-                    returnlist.push(`[ ] ${item.title}`)
-                }
-            } else {
-                if (item.completed === true) {
-                    returnlist.push(`[x] ${item.title} ${item.dueDate}`)
-                }else{
-                    returnlist.push(`[ ] ${item.title} ${item.dueDate}`)
-                }
-            }
+          const completionStatus = item.completed ? "[x]" : "";
+          const displayedDate = item.dueDate === new Date().toISOString().slice(0, 10)? "" : item.dueDate;
+          returnlist.push(`${completionStatus} ${item.title} ${displayedDate}`);
+            // if (item.dueDate === today) {
+            //     if (item.completed === true) {
+            //         returnlist.push(`[x] ${item.title}`)
+            //     } else {
+            //         returnlist.push(`[ ] ${item.title}`)
+            //     }
+            // } else {
+            //     if (item.completed === true) {
+            //         returnlist.push(`[x] ${item.title} ${item.dueDate}`)
+            //     }else{
+            //         returnlist.push(`[ ] ${item.title} ${item.dueDate}`)
+            //     }
+            // }
         })
         return returnlist.join("\n")
     // Format the To-Do list here, and return the output string

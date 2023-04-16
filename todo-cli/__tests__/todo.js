@@ -19,17 +19,19 @@ describe("Todo List Test suite", () => {
       dueDate: new Date().toISOString().slice(0,10),
       completed: false,
     });
-    expect(all.length).toBe(todoLength + 1);
+    expect(all.length).toEqual(todoLength + 1);
   });
 
   // checking if the markAsComplete function is working
   test("markasComplete", () => {
+    expect(all[0].completed).toBe(false);
     markAsComplete(0);
     expect(all[0].completed).toBe(true);
   });
 
   // checking if the overdue function is working
   test("Overdue", () => {
+    const overDueTodoItemsCount =overdue().length
     add({
       title: "all the test overdued",
       dueDate: new Date(
@@ -37,7 +39,7 @@ describe("Todo List Test suite", () => {
       ).toISOString().slice(0,10),
       completed: false,
     });
-    expect(overdue().length).toBe(1);
+    expect(overdue().length).toEqual(overDueTodoItemsCount+1);
   });
 
   // checking if the dueToday function is working
@@ -47,6 +49,7 @@ describe("Todo List Test suite", () => {
 
   // checking if the dueLater function is working
   test("later items", () => {
+    const dueLaterTodoItemsCount = dueLater().length
     add({
       title: "Later work",
       dueDate: new Date(
@@ -54,6 +57,6 @@ describe("Todo List Test suite", () => {
       ).toISOString().slice(0,10),
       completed: false,
     });
-    expect(dueLater().length).toBe(1);
+    expect(dueLater().length).toEqual(dueLaterTodoItemsCount+1);
   });
 });
