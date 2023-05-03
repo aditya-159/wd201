@@ -81,6 +81,6 @@ describe("Todo Application", function () {
 
     const markCompleteResponse = await agent.delete(`/todos/${todoID}`).send();
     const parsedUpdateResponse = JSON.parse(markCompleteResponse.text);
-    expect(parsedUpdateResponse.Success).toBe(true);
+    expect(parsedUpdateResponse).toBe(true);
   });
 });

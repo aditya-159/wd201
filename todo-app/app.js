@@ -63,14 +63,21 @@ app.delete("/todos/:id", async function (request, response) {
   // First, we have to query our database to delete a Todo by ID.
   // Then, we have to respond back with true/false based on whether the Todo was deleted or not.
   // response.send(true)
-  try{
-    Todo.destroy({where:{id:request.params.id}});
-    return response.json({Success:true});
-  }
-  catch(error){
-    console.log(error);
-    return response.json({Success:false});
-  }
+  Todo.destroy({
+    where: {
+      id: request.params.id //this will be your id that you want to delete
+    }
+  }).then(function(rowDeleted){
+    console.log(rowDeleted); // rowDeleted will return number of rows deleted
+    if(rowDeleted === 1){
+      response.send(true);
+    }
+    else{
+      response.send(false);
+    }
+  }, function(err){
+    response.send(false);
+  });
 });
 
 module.exports = app;
